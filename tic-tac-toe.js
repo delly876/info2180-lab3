@@ -20,32 +20,52 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 
+    const winningConditions = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    var winner = "";
+    const winnerX = "Congratulatons! X is the Winner!";
+    const winnerO = "Congratulatons! O is the Winner!";
+
     let gameState = ["","","","","","","","",""];
     
     insertX();
+    winnerDeclaration();
     
-    
-    /*let fullcounter = 9;
-    let restartx = 0;
-    while (fullcounter !== 0){
-        for (let x = 0; x < gameState.length; x++){
-            if (gameState[x] !== ""){
-                fullcounter --;
+    function winnerDeclaration(){
+        for (let p = 0; p <= 7; p++) {
+            let roundWon = false;
+            const winCondition = winningConditions[p];
+            let a = gameState[winCondition[0]];
+            let b = gameState[winCondition[1]];
+            let c = gameState[winCondition[2]];
+            if (a === '' || b === '' || c === '') {
+                continue;
             }
-            else if (fullcounter === 0){
-                alert("No more possible selections, start new game.");
-            }
-            else{
-                restartx++;
-                if (restartx !== 0){
-                    x = 0;
+            if (a === b && b === c) {
+                roundWon = true;
+                if (a === 'X'){
+                    winner = winnerX;
                 }
+                else{
+                    winner = winnerO;
+                }
+            break
+            }
+            if (roundWon){
+                document.getElementById("status").target.innerHTML = winner;
             }
         }
-
-    }*/
-
-
+    }
+    
     function insertX(){
         for (var x in squares){
             if (squares[x].innerHTML === ""){
