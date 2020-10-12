@@ -10,6 +10,16 @@ document.addEventListener('DOMContentLoaded', function(){
         console.log("Style applied.");
     });
 
+    squares.forEach((elem) => {
+        elem.addEventListener('mouseover', (e) => {
+            e.target.classList.add('hover');
+        });
+
+        elem.addEventListener('mouseout', (e) => {
+            e.target.classList.remove('hover');
+        });
+    });
+
     let gameState = ["","","","","","","","",""];
     
     insertX();
